@@ -3,10 +3,70 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sharmistha's Cake House</title><style>
+
 body{
 margin:0;
 font-family:Arial,sans-serif;
-background:#fff8f3;
+background:linear-gradient(
+-45deg,
+#fff8f3,
+#ffe0d6,
+#fff3cd,
+#ffd6d6
+);
+background-size:400% 400%;
+animation:gradientBG 15s ease infinite;
+overflow-x:hidden;
+}
+
+@keyframes gradientBG{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.floating-emojis{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:0;
+}
+
+.floating-emojis span{
+position:absolute;
+font-size:40px;
+opacity:.15;
+animation:floatUp 15s linear infinite;
+}
+
+.floating-emojis span:nth-child(1){left:5%;animation-delay:0s;}
+.floating-emojis span:nth-child(2){left:20%;animation-delay:2s;}
+.floating-emojis span:nth-child(3){left:35%;animation-delay:4s;}
+.floating-emojis span:nth-child(4){left:50%;animation-delay:6s;}
+.floating-emojis span:nth-child(5){left:65%;animation-delay:8s;}
+.floating-emojis span:nth-child(6){left:80%;animation-delay:10s;}
+.floating-emojis span:nth-child(7){left:90%;animation-delay:12s;}
+.floating-emojis span:nth-child(8){left:75%;animation-delay:14s;}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh) rotate(0deg);
+}
+100%{
+transform:translateY(-150px) rotate(360deg);
+}
+}
+
+header,
+.container,
+.card,
+.linkbox{
+position:relative;
+z-index:2;
 }
 
 header{
@@ -56,8 +116,7 @@ margin-top:10px;
 border-radius:10px;
 font-size:16px;
 }
-
-.price{
+  .price{
 font-size:32px;
 font-weight:bold;
 text-align:center;
@@ -91,7 +150,18 @@ background:#fff3cd;
 border-radius:10px;
 text-align:center;
 }
-</style></head><body><header>
+
+</style>
+</head><body><div class="floating-emojis">
+<span>🎂</span>
+<span>🍰</span>
+<span>🧁</span>
+<span>🎂</span>
+<span>🍰</span>
+<span>🧁</span>
+<span>🎂</span>
+<span>🍰</span>
+</div><header>
 <h1>🎂 Sharmistha's Cake House</h1>
 <p>Fresh Homemade Custom Cakes</p>
 </header><div class="container"><div class="linkbox"><h2>📸 Cake Design Pictures</h2><p>
@@ -107,20 +177,24 @@ View Cake Pictures
 </p></div><div class="card"><h3>Select Flavour</h3><select id="flavour" onchange="updatePrice()"><option value="">Choose Flavour</option><option value="group1">Mango</option>
 <option value="group1">Strawberry</option>
 <option value="group1">Pineapple</option>
-<option value="group1">Orange</option><option value="butter">Butterscotch</option><option value="choco">Chocolate</option><option value="overload">Chocolate Overloaded</option><option value="premium">Red Velvet</option>
+<option value="group1">Orange</option><option value="butter">Butterscotch</option>
+<option value="choco">Chocolate</option>
+<option value="overload">Chocolate Overloaded</option><option value="premium">Red Velvet</option>
 <option value="premium">Rasmalai</option>
 <option value="premium">Black Forest</option>
 <option value="premium">White Forest</option></select><h3>Select Weight</h3><select id="weight" onchange="updatePrice()"><option value="">Choose Weight</option><option value="half">Half Pound</option>
 <option value="one">1 Pound</option>
 <option value="onehalf">1.5 Pound</option>
-<option value="two">2 Pound</option></select><div class="price" id="price">₹0</div><a href="#" id="whatsappBtn" class="btn whatsapp">
+<option value="two">2 Pound</option></select><div class="price" id="price">₹0</div>
+<a href="#" id="whatsappBtn" class="btn whatsapp">
 💬 WhatsApp Order
 </a><a href="tel:9123728105" class="btn call">
 📞 Call Me
 </a><div class="note">
 <b>Don't like any design?</b><br>
 Send your preferred cake design to WhatsApp.
-</div></div></div><script>
+</div></div>
+</div><script>
 
 function updatePrice(){
 
