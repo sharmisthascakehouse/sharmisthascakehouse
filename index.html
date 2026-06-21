@@ -1,29 +1,56 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sharmistha's Cake House</title>
+<title>Sharmistha's Cake House</title><style>
 
-<style>
 body{
+margin:0;
 font-family:Arial,sans-serif;
 background:#fff8f3;
-margin:0;
-padding:0;
 }
 
 header{
 background:#ff6f61;
 color:white;
-text-align:center;
 padding:20px;
+text-align:center;
+}
+
+header h1{
+margin:0;
 }
 
 .container{
-padding:20px;
-max-width:700px;
+padding:15px;
+max-width:900px;
 margin:auto;
+}
+
+.gallery{
+display:flex;
+overflow-x:auto;
+gap:12px;
+padding:10px;
+scroll-snap-type:x mandatory;
+}
+
+.cakeimg{
+width:220px;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+scroll-snap-align:center;
+cursor:pointer;
+}
+
+.selected{
+text-align:center;
+font-size:18px;
+font-weight:bold;
+color:#ff5722;
+margin:15px 0;
 }
 
 .card{
@@ -31,7 +58,6 @@ background:white;
 padding:20px;
 border-radius:15px;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
-margin-top:20px;
 }
 
 select{
@@ -43,10 +69,10 @@ font-size:16px;
 }
 
 .price{
-font-size:30px;
+font-size:32px;
 font-weight:bold;
-color:#ff5722;
 text-align:center;
+color:#ff5722;
 margin-top:20px;
 }
 
@@ -76,71 +102,43 @@ background:#fff3cd;
 border-radius:10px;
 text-align:center;
 }
-</style>
-</head>
 
-<body>
-
-<header>
+</style></head><body><header>
 <h1>🎂 Sharmistha's Cake House</h1>
 <p>Fresh Homemade Custom Cakes</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-
-<h3>Select Flavour</h3>
-
-<select id="flavour" onchange="updatePrice()">
-<option value="">Choose Flavour</option>
-<option value="group1">Mango</option>
+</header><div class="container"><h2>🎂 Cake Gallery</h2><div class="gallery"><img src="images/IMG-20260520-WA0065.jpg" class="cakeimg" onclick="selectDesign('Design 1')"><img src="images/IMG-20260612-WA0005.jpg" class="cakeimg" onclick="selectDesign('Design 2')"><img src="images/IMG-20260612-WA0004.jpg" class="cakeimg" onclick="selectDesign('Design 3')"><img src="images/IMG-20260610-WA0044.jpg" class="cakeimg" onclick="selectDesign('Design 4')"><img src="images/IMG-20260610-WA0043.jpg" class="cakeimg" onclick="selectDesign('Design 5')"><img src="images/IMG-20260615-WA0002.jpg" class="cakeimg" onclick="selectDesign('Design 6')"><img src="images/IMG-20260614-WA0123.jpg" class="cakeimg" onclick="selectDesign('Design 7')"><img src="images/IMG-20260603-WA0038.jpg" class="cakeimg" onclick="selectDesign('Design 8')"><img src="images/IMG-20260603-WA0037.jpg" class="cakeimg" onclick="selectDesign('Design 9')"><img src="images/IMG-20260603-WA0039.jpg" class="cakeimg" onclick="selectDesign('Design 10')"></div><div id="selectedDesign" class="selected">
+No Design Selected
+</div><div class="card"><h3>Select Flavour</h3><select id="flavour" onchange="updatePrice()"><option value="">Choose Flavour</option><option value="group1">Mango</option>
 <option value="group1">Strawberry</option>
 <option value="group1">Pineapple</option>
-<option value="group1">Orange</option>
-
-<option value="butter">Butterscotch</option>
-
-<option value="choco">Chocolate</option>
-
-<option value="overload">Chocolate Overloaded</option>
-
-<option value="premium">Red Velvet</option>
+<option value="group1">Orange</option><option value="butter">Butterscotch</option><option value="choco">Chocolate</option><option value="overload">Chocolate Overloaded</option><option value="premium">Red Velvet</option>
 <option value="premium">Rasmalai</option>
 <option value="premium">Black Forest</option>
-<option value="premium">White Forest</option>
-</select>
-
-<h3>Select Weight</h3>
-
-<select id="weight" onchange="updatePrice()">
-<option value="">Choose Weight</option>
-<option value="half">Half Pound</option>
+<option value="premium">White Forest</option></select><h3>Select Weight</h3><select id="weight" onchange="updatePrice()"><option value="">Choose Weight</option><option value="half">Half Pound</option>
 <option value="one">1 Pound</option>
 <option value="onehalf">1.5 Pound</option>
-<option value="two">2 Pound</option>
-</select>
-
-<div class="price" id="price">₹0</div>
-
-<a href="#" id="whatsappBtn" class="btn whatsapp">
+<option value="two">2 Pound</option></select><div class="price" id="price">₹0</div><a href="#" id="whatsappBtn" class="btn whatsapp">
 💬 WhatsApp Order
-</a>
-
-<a href="tel:9123728105" class="btn call">
+</a><a href="tel:9123728105" class="btn call">
 📞 Call Me
-</a>
-
-<div class="note">
+</a><div class="note">
 <b>Don't like any design?</b><br>
 Send your preferred design to WhatsApp.
-</div>
+</div></div></div>
+  <script>
 
-</div>
+let selectedDesign = "Not Selected";
 
-</div>
+function selectDesign(design){
 
-<script>
+selectedDesign = design;
+
+document.getElementById("selectedDesign").innerHTML =
+"✅ " + design + " Selected";
+
+updatePrice();
+
+}
 
 function updatePrice(){
 
@@ -192,11 +190,13 @@ two:1650
 };
 
 if(flavour && weight){
+
 price = prices[flavour][weight];
+
 }
 
-document.getElementById("price")
-.innerHTML = "₹" + price;
+document.getElementById("price").innerHTML =
+"₹" + price;
 
 let flavourText =
 document.getElementById("flavour")
@@ -213,6 +213,8 @@ document.getElementById("weight").selectedIndex
 let msg =
 `Hello Sharmistha's Cake House,
 
+Selected Design: ${selectedDesign}
+
 Flavour: ${flavourText}
 
 Weight: ${weightText}
@@ -228,7 +230,5 @@ document.getElementById("whatsappBtn")
 
 }
 
-</script>
-
-</body>
-</html>
+</script></body>
+</html>  
