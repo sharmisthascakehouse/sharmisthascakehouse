@@ -7,163 +7,227 @@
 
 <style>
 body{
-margin:0;
 font-family:Arial,sans-serif;
 background:#fff8f3;
+margin:0;
+padding:0;
 }
 
 header{
-background:#ff7f50;
+background:#ff6f61;
 color:white;
-padding:20px;
 text-align:center;
+padding:20px;
 }
 
-.logo{
+.container{
+padding:20px;
+max-width:700px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+margin-top:20px;
+}
+
+select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+font-size:16px;
+}
+
+.price{
 font-size:30px;
 font-weight:bold;
+color:#ff5722;
+text-align:center;
+margin-top:20px;
 }
 
 .btn{
-display:inline-block;
-padding:12px 20px;
-margin:5px;
-border-radius:8px;
+display:block;
+text-align:center;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
 text-decoration:none;
-color:white;
 font-weight:bold;
-}
-
-.call{
-background:#28a745;
+color:white;
 }
 
 .whatsapp{
 background:#25D366;
 }
 
-.gallery{
-display:flex;
-overflow-x:auto;
-gap:15px;
+.call{
+background:#28a745;
+}
+
+.note{
+margin-top:20px;
 padding:15px;
-scroll-snap-type:x mandatory;
-}
-
-.card{
-min-width:250px;
-background:white;
-border-radius:15px;
-box-shadow:0 3px 10px rgba(0,0,0,.15);
-scroll-snap-align:center;
-padding:10px;
-}
-
-.card img{
-width:100%;
-border-radius:12px;
-}
-
-select{
-width:100%;
-padding:10px;
-margin-top:10px;
-border-radius:8px;
-}
-
-.price{
-font-size:22px;
-font-weight:bold;
-color:#ff5722;
-margin-top:10px;
-}
-
-footer{
+background:#fff3cd;
+border-radius:10px;
 text-align:center;
-padding:20px;
 }
 </style>
-
 </head>
+
 <body>
 
 <header>
-<div class="logo">🎂 Sharmistha's Cake House</div>
-<p>Fresh Homemade Cakes</p>
-
-<a class="btn call" href="tel:9123728105">📞 Call Now</a>
-
-<a class="btn whatsapp"
-href="https://wa.me/919123728105">
-💬 WhatsApp
-</a>
+<h1>🎂 Sharmistha's Cake House</h1>
+<p>Fresh Homemade Custom Cakes</p>
 </header>
 
-<h2 style="padding-left:15px;">Cake Collection</h2>
-
-<div class="gallery">
+<div class="container">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" />
 
-<h3>Chocolate Cake</h3>
+<h3>Select Flavour</h3>
 
-<select onchange="updatePrice(this)">
-<option value="">Select Weight</option>
-<option value="320">Half Pound</option>
-<option value="500">1 Pound</option>
-<option value="820">1.5 Pound</option>
-<option value="1200">2 Pound</option>
+<select id="flavour" onchange="updatePrice()">
+<option value="">Choose Flavour</option>
+<option value="group1">Mango</option>
+<option value="group1">Strawberry</option>
+<option value="group1">Pineapple</option>
+<option value="group1">Orange</option>
+
+<option value="butter">Butterscotch</option>
+
+<option value="choco">Chocolate</option>
+
+<option value="overload">Chocolate Overloaded</option>
+
+<option value="premium">Red Velvet</option>
+<option value="premium">Rasmalai</option>
+<option value="premium">Black Forest</option>
+<option value="premium">White Forest</option>
 </select>
 
-<div class="price">₹0</div>
-</div>
+<h3>Select Weight</h3>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800" />
-
-<h3>Strawberry Cake</h3>
-
-<select onchange="updatePrice(this)">
-<option value="">Select Weight</option>
-<option value="260">Half Pound</option>
-<option value="360">1 Pound</option>
-<option value="660">1.5 Pound</option>
-<option value="860">2 Pound</option>
+<select id="weight" onchange="updatePrice()">
+<option value="">Choose Weight</option>
+<option value="half">Half Pound</option>
+<option value="one">1 Pound</option>
+<option value="onehalf">1.5 Pound</option>
+<option value="two">2 Pound</option>
 </select>
 
-<div class="price">₹0</div>
-</div>
+<div class="price" id="price">₹0</div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=800" />
+<a href="#" id="whatsappBtn" class="btn whatsapp">
+💬 WhatsApp Order
+</a>
 
-<h3>Butterscotch Cake</h3>
+<a href="tel:9123728105" class="btn call">
+📞 Call Me
+</a>
 
-<select onchange="updatePrice(this)">
-<option value="">Select Weight</option>
-<option value="300">Half Pound</option>
-<option value="400">1 Pound</option>
-<option value="760">1.5 Pound</option>
-<option value="900">2 Pound</option>
-</select>
-
-<div class="price">₹0</div>
+<div class="note">
+<b>Don't like any design?</b><br>
+Send your preferred design to WhatsApp.
 </div>
 
 </div>
 
-<footer>
-<h3>📍 Maynapur</h3>
-<p>Custom Cakes Available</p>
-</footer>
+</div>
 
 <script>
-function updatePrice(select){
-let card = select.parentElement;
-let price = card.querySelector(".price");
-price.innerHTML = "₹" + select.value;
+
+function updatePrice(){
+
+let flavour =
+document.getElementById("flavour").value;
+
+let weight =
+document.getElementById("weight").value;
+
+let price = 0;
+
+const prices = {
+
+group1:{
+half:260,
+one:360,
+onehalf:660,
+two:860
+},
+
+butter:{
+half:300,
+one:400,
+onehalf:760,
+two:900
+},
+
+choco:{
+half:320,
+one:500,
+onehalf:820,
+two:1200
+},
+
+overload:{
+half:350,
+one:550,
+onehalf:850,
+two:1250
+},
+
+premium:{
+half:400,
+one:600,
+onehalf:1220,
+two:1650
 }
+
+};
+
+if(flavour && weight){
+price = prices[flavour][weight];
+}
+
+document.getElementById("price")
+.innerHTML = "₹" + price;
+
+let flavourText =
+document.getElementById("flavour")
+.options[
+document.getElementById("flavour").selectedIndex
+].text;
+
+let weightText =
+document.getElementById("weight")
+.options[
+document.getElementById("weight").selectedIndex
+].text;
+
+let msg =
+`Hello Sharmistha's Cake House,
+
+Flavour: ${flavourText}
+
+Weight: ${weightText}
+
+Price: ₹${price}
+
+Please confirm my order.`;
+
+document.getElementById("whatsappBtn")
+.href =
+"https://wa.me/919123728105?text="
++ encodeURIComponent(msg);
+
+}
+
 </script>
 
 </body>
