@@ -1,11 +1,170 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sharmistha's Cake House</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#fff8f3;
+}
+
+header{
+background:#ff7f50;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+.btn{
+display:inline-block;
+padding:12px 20px;
+margin:5px;
+border-radius:8px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.call{
+background:#28a745;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+.gallery{
+display:flex;
+overflow-x:auto;
+gap:15px;
+padding:15px;
+scroll-snap-type:x mandatory;
+}
+
+.card{
+min-width:250px;
+background:white;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+scroll-snap-align:center;
+padding:10px;
+}
+
+.card img{
+width:100%;
+border-radius:12px;
+}
+
+select{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#ff5722;
+margin-top:10px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+}
+</style>
+
 </head>
 <body>
-<h1>🎂 Sharmistha's Cake House</h1>
-<p>Website is working successfully!</p>
-<p>📞 Call: 9123728105</p>
+
+<header>
+<div class="logo">🎂 Sharmistha's Cake House</div>
+<p>Fresh Homemade Cakes</p>
+
+<a class="btn call" href="tel:9123728105">📞 Call Now</a>
+
+<a class="btn whatsapp"
+href="https://wa.me/919123728105">
+💬 WhatsApp
+</a>
+</header>
+
+<h2 style="padding-left:15px;">Cake Collection</h2>
+
+<div class="gallery">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" />
+
+<h3>Chocolate Cake</h3>
+
+<select onchange="updatePrice(this)">
+<option value="">Select Weight</option>
+<option value="320">Half Pound</option>
+<option value="500">1 Pound</option>
+<option value="820">1.5 Pound</option>
+<option value="1200">2 Pound</option>
+</select>
+
+<div class="price">₹0</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800" />
+
+<h3>Strawberry Cake</h3>
+
+<select onchange="updatePrice(this)">
+<option value="">Select Weight</option>
+<option value="260">Half Pound</option>
+<option value="360">1 Pound</option>
+<option value="660">1.5 Pound</option>
+<option value="860">2 Pound</option>
+</select>
+
+<div class="price">₹0</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=800" />
+
+<h3>Butterscotch Cake</h3>
+
+<select onchange="updatePrice(this)">
+<option value="">Select Weight</option>
+<option value="300">Half Pound</option>
+<option value="400">1 Pound</option>
+<option value="760">1.5 Pound</option>
+<option value="900">2 Pound</option>
+</select>
+
+<div class="price">₹0</div>
+</div>
+
+</div>
+
+<footer>
+<h3>📍 Maynapur</h3>
+<p>Custom Cakes Available</p>
+</footer>
+
+<script>
+function updatePrice(select){
+let card = select.parentElement;
+let price = card.querySelector(".price");
+price.innerHTML = "₹" + select.value;
+}
+</script>
+
 </body>
 </html>
